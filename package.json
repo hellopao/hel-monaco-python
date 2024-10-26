@@ -1,11 +1,11 @@
 {
   "name": "hel-monaco-python",
   "appGroupName": "hel-monaco-python",
+  "version": "0.0.10",
   "main": "hel_proxy/entry.js",
   "module": "hel_proxy_es/entry.js",
   "unpkg": "hel_dist/index.html",
-  "types": "lib/entrance/libTypes.ts",
-  "version": "0.0.1",
+  "types": "src/entrance/libTypes.ts",
   "scripts": {
     "dev": "vite",
     "build": "npm run build:dist && npm run build:proxy && npm run build:meta",
@@ -14,11 +14,10 @@
     "build:meta": "node scripts/meta.js"
   },
   "devDependencies": {
-    "@rollup/plugin-terser": "^0.4.4",
-    "@rollup/plugin-typescript": "^11.1.6",
+    "@rollup/plugin-typescript": "^11.1.0",
     "@types/node": "*",
     "hel-types": "^4.3.3",
-    "rollup": "^4.20.0",
+    "rollup": "^3.21.7",
     "tslib": "^2.6.3",
     "typescript": "^5.3.3",
     "vite": "^5.4.0"
@@ -28,15 +27,13 @@
     "hel-iso": "^4.4.0",
     "hel-lib-proxy": "^4.9.1",
     "hel-micro": "^4.9.10",
-    "monaco-python": "^0.1.1"
+    "monaco-python": "^0.1.7"
   },
   "license": "MIT",
   "files": [
     "hel_proxy",
     "hel_proxy_es",
-    "hel_bundle",
     "hel_dist",
-    "lib",
-    "scripts"
+    "src"
   ]
 }

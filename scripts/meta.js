@@ -14,7 +14,7 @@ const subApp = helDevUtils.createLibSubApp(packageJson, { npmCdnType: 'unpkg' })
 
 helDevUtils.extractHelMetaJson({
   appInfo: subApp,
-  buildDirFullPath: path.join(__dirname, '../dist'),
+  buildDirFullPath: path.join(__dirname, '../hel_dist'),
   packageJson,
 }).catch(err => {
   console.error(err);

@@ -1,41 +1,25 @@
-import typescript from '@rollup/plugin-typescript';
-import { terser } from '@rollup/plugin-terser';
-import { cst } from 'hel-dev-utils';
-import pkg from './package.json';
+const typescript = require('@rollup/plugin-typescript').default;
+const helDevUtils = require('hel-dev-utils');
 
-const env = process.env.BUILD_ENV || 'umd';
 const plugins = [
-  typescript({
-    exclude: 'node_modules/**',
-    typescript: require('typescript'),
-  }),
+  typescript(),
 ];
 
-const env2outputConf = {
-  es: {
-    format: 'es',
-    name: pkg.appGroupName,
-    file: `${cst.HEL_PROXY_DIR}_es/entry.js`,
-  },
-  umd: {
-    format: 'umd',
-    name: pkg.appGroupName,
-    file: `${cst.HEL_PROXY_DIR}/entry.js`,
-  },
-};
-
-const outputObj = env2outputConf[env];
-
-if (process.env.MIN === 'true') {
-  plugins.push(terser());
-  const [dirName] = outputObj.file.split('/');
-  outputObj.file = `${dirName}/entry.min.js`;
-}
-
-module.exports = {
+module.exports = [{
   input: 'src/entrance/libTypes.ts',
   plugins,
-  output: [
-    outputObj,
-  ],
-};
+  output: {
+    format: 'esm',
+    name: 'hel-monaco-python',
+    file: `${helDevUtils.cst.HEL_PROXY_DIR}_es/entry.js`,
+  }
+},
+{
+  input: 'src/entrance/libTypes.ts',
+  plugins,
+  output: {
+    format: 'umd',
+    name: 'hel-monaco-python',
+    file: `${helDevUtils.cst.HEL_PROXY_DIR}_es/entry.js`,
+  }
+}];

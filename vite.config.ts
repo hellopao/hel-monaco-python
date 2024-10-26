@@ -2,11 +2,13 @@ import { defineConfig } from "vite";
 import pkg from './package.json';
 
 export default defineConfig(({ mode }) => {
-  const baseURL = mode === 'development' ? '/' : `https://unpkg.com/${pkg.name}@${pkg.version}/dist/`;
   return {
-    base: baseURL,
+    base:  mode === 'development' ? '/' : `https://cdn.jsdelivr.net/npm/${pkg.name}@${pkg.version}/hel_dist/`,
     server: {
       port: 8175
+    },
+    build: {
+      outDir: 'hel_dist'
     }
   }
 });
